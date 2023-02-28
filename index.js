@@ -46,7 +46,7 @@ const { createApp } = Vue
         },
         clearTasks() {
             this.tasks = []
-            this.setStorage()
+            localStorage.removeItem('tasks')
         },
         setStorage() {
             localStorage.setItem('tasks', JSON.stringify(this.tasks))
