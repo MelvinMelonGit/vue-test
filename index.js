@@ -13,7 +13,7 @@ const { createApp } = Vue
             if (!this.msg) return
 
             this.tasks.push(
-                {id: this.tasks.length +1, subject: this.msg}
+                {id: this.tasks.length +1, subject: this.msg, isEditing: false, editMsg: ''}
             )
             
             this.setStorage()
