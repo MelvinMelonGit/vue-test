@@ -15,6 +15,9 @@ const { createApp } = Vue
             this.tasks.push(
                 {id: this.tasks.length +1, subject: this.msg}
             )
+            
+            localStorage.setItem('tasks', JSON.stringify(this.tasks))
+
             this.msg = ''
         },
         deleteTask(id) {
@@ -39,6 +42,7 @@ const { createApp } = Vue
         }
     },
     mounted() {
+        this.tasks = JSON.parse(localStorage.getItem('tasks')) || [];
         this.tasks.forEach(t => {
                 t.isEditing = false
                 t.editMsg = ''
