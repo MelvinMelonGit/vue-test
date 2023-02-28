@@ -13,7 +13,7 @@ const { createApp } = Vue
             if (!this.msg) return
 
             this.tasks.push(
-                {id: this.tasks.length +1, subject: this.msg, isEditing: false, editMsg: ''}
+                {id: this.tasks.length +1, task: this.msg, isEditing: false, editMsg: '', prevMsg: ''}
             )
             
             this.setStorage()
@@ -36,8 +36,10 @@ const { createApp } = Vue
             this.tasks.forEach(t => {
                 if (t.id === id) {
                     t.isEditing = !t.isEditing
-                    if (!t.editMsg) return
-                    t.subject = t.editMsg
+                    //store existing old task in prevMsg
+                    t.prevMsg = t.task
+                    //update existing new task based on input
+                    t.task = t.editMsg
                 }
             })
 
@@ -49,6 +51,20 @@ const { createApp } = Vue
                     t.isEditing = !t.isEditing
                 }
             })
+        },
+        revertTask(id) {
+            this.tasks.forEach(t => {
+                if (t.id === id) {
+                    let oldTask = t.task
+                    t.isEditing = !t.isEditing
+                    //store prev old task in existing task
+                    t.task = t.prevMsg
+                    //update prevtask based on prev existing task
+                    t.prevMsg = oldTask
+                }
+            })
+
+            this.setStorage()
         },
         clearTasks() {
             this.tasks = []
