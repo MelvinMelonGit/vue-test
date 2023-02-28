@@ -5,10 +5,7 @@ const { createApp } = Vue
       return {
         title: 'Notetaking App',
         msg: '',
-        tasks: [
-            {id: 1, subject: 'english'},
-            {id: 2, subject: 'math'}
-        ]
+        tasks: []
       }
     },
     methods: {
@@ -36,11 +33,12 @@ const { createApp } = Vue
                 if (t.id === id) {
                     t.isEditing = !t.isEditing
                     t.subject = t.editMsg
+                    t.editMsg = ''
                 }
             })
         }
     },
-    onmount() {
+    mounted() {
         this.tasks.forEach(t => {
                 t.isEditing = false
                 t.editMsg = ''
