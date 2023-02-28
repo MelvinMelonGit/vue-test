@@ -3,7 +3,7 @@ const { createApp } = Vue
   createApp({
     data() {
       return {
-        title: 'Notetaking App',
+        title: 'Tasks App',
         msg: '',
         tasks: []
       }
