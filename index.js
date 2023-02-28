@@ -44,19 +44,15 @@ const { createApp } = Vue
 
             this.setStorage()
         },
-        setStorage() {
-            localStorage.setItem('tasks', JSON.stringify(this.tasks))
-        },
         clearTasks() {
             this.tasks = []
+            this.setStorage()
+        },
+        setStorage() {
+            localStorage.setItem('tasks', JSON.stringify(this.tasks))
         }
     },
     mounted() {
         this.tasks = JSON.parse(localStorage.getItem('tasks')) || []
-        this.tasks.forEach(t => {
-                t.isEditing = false
-                t.editMsg = ''
-            }
-        )
     }
   }).mount('#app')
