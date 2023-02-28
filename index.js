@@ -28,8 +28,7 @@ const { createApp } = Vue
         editTask(id) {
             this.tasks.forEach(t => {
                 if (t.id === id) {
-                    t.isEditing = !t.isEditing   
-                    t.editMsg = t.subject
+                    t.isEditing = !t.isEditing
                 }
             })
         },
@@ -37,16 +36,17 @@ const { createApp } = Vue
             this.tasks.forEach(t => {
                 if (t.id === id) {
                     t.isEditing = !t.isEditing
+                    if (!t.editMsg) return
                     t.subject = t.editMsg
                 }
             })
 
             this.setStorage()
         },
-        revertEdit(id) {
+        cancelEdit(id) {
             this.tasks.forEach(t => {
                 if (t.id === id) {
-                    t.subject = t.editMsg
+                    t.isEditing = !t.isEditing
                 }
             })
         },
