@@ -22,7 +22,7 @@
                 <span v-else class="p-1.5">{{ item.subject }}</span>
                 <button v-if="item.isEditing" @click="confirmEdit(item.id)" class="bg-blue-500 font-semibold text-white rounded m-2 p-1.5">Save</button>
                 <button v-if="!item.isEditing" @click="editTask(item.id)" class="bg-blue-500 font-semibold text-white rounded m-2 p-1.5">Edit</button>
-                <button v-if="!item.isEditing" @click="deleteTask(item.id)" class="bg-blue-500 font-semibold text-white rounded m-2 p-1.5">Delete</button>
+                <button v-if="!item.isEditing" @click="deleteTask(item.id)" class="bg-red-500 font-semibold text-white rounded m-2 p-1.5">Delete</button>
             </li>
         </ul>
     </div>
