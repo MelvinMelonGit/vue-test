@@ -32,8 +32,6 @@ const { createApp } = Vue
                     t.editMsg = t.subject
                 }
             })
-
-            this.setStorage()
         },
         confirmEdit(id) {
             this.tasks.forEach(t => {
