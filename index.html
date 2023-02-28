@@ -4,14 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vue Test</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="index.js" defer></script>
 </head>
 <body>
     <div id="app">
         <h1>{{ title }}</h1>
+        <input v-model="msg"  @keyup.enter="addTask" />
+        <button @click="addTask">Add Task</button>
+        <ul>
+            <li v-for="d in task">
+                <input v-if="d.isEditing" v-model="d.editMsg" @keyup.enter="confirmEdit(d.id)"/>
+                <span v-else>{{ d.subject }}</span>
+                <button v-if="d.isEditing" @click="confirmEdit(d.id)">Save Edit</button>
+                <button v-if="!d.isEditing" @click="editTask(d.id)">Edit</button>
+                <button v-if="!d.isEditing" @click="deleteTask(d.id)">Delete</button>
+            </li>
+        </ul>
     </div>
 </body>
 </html>
