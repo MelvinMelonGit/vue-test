@@ -16,12 +16,14 @@ const { createApp } = Vue
                 {id: this.tasks.length +1, subject: this.msg}
             )
             
-            localStorage.setItem('tasks', JSON.stringify(this.tasks))
+            this.setStorage()
 
             this.msg = ''
         },
         deleteTask(id) {
             this.tasks = this.tasks.filter(t=> t.id !== id)
+
+            this.setStorage()
         },
         editTask(id) {
             this.tasks.forEach(t => {
@@ -30,6 +32,8 @@ const { createApp } = Vue
                     t.editMsg = t.subject
                 }
             })
+
+            this.setStorage()
         },
         confirmEdit(id) {
             this.tasks.forEach(t => {
@@ -39,10 +43,15 @@ const { createApp } = Vue
                     t.editMsg = ''
                 }
             })
+
+            this.setStorage()
+        },
+        setStorage() {
+            localStorage.setItem('tasks', JSON.stringify(this.tasks))
         }
     },
     mounted() {
-        this.tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+        this.tasks = JSON.parse(localStorage.getItem('tasks')) || []
         this.tasks.forEach(t => {
                 t.isEditing = false
                 t.editMsg = ''
