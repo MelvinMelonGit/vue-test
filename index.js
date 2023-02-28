@@ -33,16 +33,22 @@ const { createApp } = Vue
                 }
             })
         },
-        confirmEdit(id) {
+        saveEdit(id) {
             this.tasks.forEach(t => {
                 if (t.id === id) {
                     t.isEditing = !t.isEditing
                     t.subject = t.editMsg
-                    t.editMsg = ''
                 }
             })
 
             this.setStorage()
+        },
+        revertEdit(id) {
+            this.tasks.forEach(t => {
+                if (t.id === id) {
+                    t.subject = t.editMsg
+                }
+            })
         },
         clearTasks() {
             this.tasks = []
