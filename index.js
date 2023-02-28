@@ -46,6 +46,9 @@ const { createApp } = Vue
         },
         setStorage() {
             localStorage.setItem('tasks', JSON.stringify(this.tasks))
+        },
+        clearTasks() {
+            this.tasks = []
         }
     },
     mounted() {
