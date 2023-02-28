@@ -18,7 +18,7 @@
         <p v-if="!tasks.length">Add your first task :)</p>
         <ul>
             <li v-for="item in tasks">
-                <input v-if="item.isEditing" v-model="item.editMsg" @keyup.enter="confirmEdit(item.id)" class="shadow-lg rounded focus:outline-none p-1.5"/>
+                <input v-if="item.isEditing" v-model="item.editMsg" @keyup.enter="saveEdit(item.id)" class="shadow-lg rounded focus:outline-none p-1.5"/>
                 <span v-else class="p-1.5">{{ item.task }}</span>
                 <button v-if="item.isEditing" @click="saveEdit(item.id)" class="bg-blue-500 font-semibold text-white rounded m-2 p-1.5">Save</button>
                 <button v-if="item.isEditing" @click="cancelEdit(item.id)" class="bg-red-500 font-semibold text-white rounded m-2 p-1.5">Cancel</button>
