@@ -3,7 +3,7 @@ const { createApp } = Vue
   createApp({
     data() {
       return {
-        title: 'CRUD!',
+        title: 'Notetaking App',
         msg: '',
         tasks: [
             {id: 1, subject: 'english'},
@@ -13,6 +13,8 @@ const { createApp } = Vue
     },
     methods: {
         addTask() {
+            if (!this.msg) return
+
             this.tasks.push(
                 {id: this.tasks.length +1, subject: this.msg}
             )
