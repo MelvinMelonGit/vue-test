@@ -29,6 +29,7 @@ const { createApp } = Vue
             this.tasks.forEach(t => {
                 if (t.id === id) {
                     t.isEditing = !t.isEditing
+                    t.editMsg = t.task
                 }
             })
         },
