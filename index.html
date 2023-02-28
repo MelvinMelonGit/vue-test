@@ -14,7 +14,7 @@
         <input v-model="msg"  @keyup.enter="addTask" />
         <button @click="addTask">Add Task</button>
         <ul>
-            <li v-for="d in task">
+            <li v-for="d in tasks">
                 <input v-if="d.isEditing" v-model="d.editMsg" @keyup.enter="confirmEdit(d.id)"/>
                 <span v-else>{{ d.subject }}</span>
                 <button v-if="d.isEditing" @click="confirmEdit(d.id)">Save Edit</button>

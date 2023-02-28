@@ -5,24 +5,24 @@ const { createApp } = Vue
       return {
         title: 'CRUD!',
         msg: '',
-        task: [
-            {id: 1, subject: 'english', isEditing: false, editMsg: ''},
-            {id: 2, subject: 'math', isEditing: false, editMsg: ''}
+        tasks: [
+            {id: 1, subject: 'english'},
+            {id: 2, subject: 'math'}
         ]
       }
     },
     methods: {
         addTask() {
-            this.task.push(
-                {id: this.task.length +1, subject: this.msg, isEditing: false, editMsg: ''}
+            this.tasks.push(
+                {id: this.tasks.length +1, subject: this.msg}
             )
             this.msg = ''
         },
         deleteTask(id) {
-            this.task = this.task.filter(t=> t.id !== id)
+            this.tasks = this.tasks.filter(t=> t.id !== id)
         },
         editTask(id) {
-            this.task.forEach(t => {
+            this.tasks.forEach(t => {
                 if (t.id === id) {
                     t.isEditing = !t.isEditing   
                     t.editMsg = t.subject
@@ -30,12 +30,19 @@ const { createApp } = Vue
             })
         },
         confirmEdit(id) {
-            this.task.forEach(t => {
+            this.tasks.forEach(t => {
                 if (t.id === id) {
                     t.isEditing = !t.isEditing
                     t.subject = t.editMsg
                 }
             })
         }
+    },
+    onmount() {
+        this.tasks.forEach(t => {
+                t.isEditing = false
+                t.editMsg = ''
+            }
+        )
     }
   }).mount('#app')
